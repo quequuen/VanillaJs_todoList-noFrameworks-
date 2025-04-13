@@ -11,12 +11,11 @@ export const createRouter = (routes) => {
   const push = (path) => {
     // 이 부분은 주소 바를 바꾸면서 새로고침 없이 화면만 전환하게 해주는 핵심 로직이야.
     window.history.pushState(null, null, path);
-    // 왜 null, null이 붙는걸까
     //-> window.history.pushState(state, title, url)
-    // state: history에 저장할 상태 (여기선 null)왜지
+    // state: history에 저장할 상태
     //title: 문서의 제목(현재 부라우저는 대부분 무시함)
     //변경하고자 하는 주소
-    //현재 윈도우의 주소 및 상태를 이렇게 변경하겠다~ 라는건가
+    //현재 윈도우의 주소 및 상태를 이렇게 변경하겠다
     //주소만 /...로 바꾸고 페이지는 리로드를 하지 않음
     //그 후 notify를 통해 라우터 변경을 구독하고 있는 컴포넌트에 알려줌
     notify();
