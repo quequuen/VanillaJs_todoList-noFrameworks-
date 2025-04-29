@@ -10,9 +10,11 @@ router.set(
     "/": HomePage,
     "/all": AllTodosPage,
     "/detail": TodoDetailPage,
+    // "/update": UpdateDetailPage,
   })
 );
 function main() {
+  console.log(router.get());
   router.get().subscribe(render);
   render();
 }
