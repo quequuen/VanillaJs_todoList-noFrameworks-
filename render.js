@@ -1,5 +1,6 @@
 import { router } from "./router";
 import Header from "./src/pages/Header";
+import NotFoundPage from "./src/pages/NotFoundPage";
 import { addEvent } from "./src/utils/eventUtil";
 
 addEvent("click", "[data-link]", (e) => {
@@ -15,7 +16,7 @@ function render() {
     // ??->Null, None일 때 false
 
     $root.innerHTML = `
-  <div class="max-w-[800px] mx-auto px-4">
+  <div class="max-w-[700px] mx-auto min-h-100 px-4">
     ${Header()}
     ${Page()}
   </div>
