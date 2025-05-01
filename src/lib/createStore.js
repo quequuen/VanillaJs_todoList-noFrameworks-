@@ -16,3 +16,7 @@ export const createStore = (initialStore) => {
   const getState = () => ({ ...state });
   return { setState, getState, subscribe };
 };
+
+// const [state,setState] = useState([1])
+
+// setState(2)

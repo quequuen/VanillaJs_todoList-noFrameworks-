@@ -3,7 +3,7 @@ import { createObserver } from "./createObserver";
 export const createRouter = (routes) => {
   //여기서 routes는 "/": HomePage처럼 경로와 컴포넌트를 매핑한 객체
   const { subscribe, notify } = createObserver();
-  //createObserver 가져와서 구조분해할당 해준건가
+  //createObserver 가져와서 구조분해할당
   const getPath = () => window.location.pathname;
   //현재 주소의 path를 얻어옴
   const getTarget = () => routes[getPath()];

@@ -1,5 +1,5 @@
 import { router } from "./router";
-import Header from "./src/pages/Header";
+import Header from "./src/layout/Header";
 import NotFoundPage from "./src/pages/NotFoundPage";
 import { addEvent } from "./src/utils/eventUtil";
 
