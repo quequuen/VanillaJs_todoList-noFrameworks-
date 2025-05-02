@@ -1,6 +1,7 @@
 import List from "../components/List";
 
 const HomePage = () => {
+  console.log("HOME");
   let today = new Date().toISOString().split("T")[0];
   return `
   <div class="add">
