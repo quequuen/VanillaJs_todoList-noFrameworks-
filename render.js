@@ -9,6 +9,7 @@ addEvent("click", "[data-link]", (e) => {
 });
 
 function render() {
+  console.log("render");
   const $root = document.getElementById("root");
   try {
     const Page = router.get().getTarget() ?? NotFoundPage;

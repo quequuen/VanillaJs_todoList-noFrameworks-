@@ -17,7 +17,7 @@ export const createRouter = (routes) => {
     //변경하고자 하는 주소
     //현재 윈도우의 주소 및 상태를 이렇게 변경하겠다
     //주소만 /...로 바꾸고 페이지는 리로드를 하지 않음
-    //그 후 notify를 통해 라우터 변경을 구독하고 있는 컴포넌트에 알려줌
+    //그 후 notify를 통해 라우터 변경을 구독하고 있는 함수들에게 알려줌
     notify();
   };
   window.addEventListener("popstate", () => notify());

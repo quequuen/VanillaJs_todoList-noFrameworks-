@@ -10,7 +10,7 @@ const List = () => {
   let search = "";
   //검색할 값을 저장할 search 변수
   setTimeout(() => {
-    const $search = document.getElementById("search_input");
+    const $search = document.getElementById("searchInput");
     // search_input의 DOM 요소를 저장할 $search
     $search.addEventListener("keyup", (e) => {
       search = e.target.value;
@@ -41,11 +41,12 @@ const List = () => {
   const filterTodoData = getFilterData();
   // console.log("FILTERED TODOS:", filterTodoData);
   return `
+  <p class="mt-16 flex justify-center italic text-blue-700 text-4xl font-extrabold">TO DO LIST</p>
     <div class="List">
         <div class="search mt-5 flex justify-center ">
-            <input type="text" id="search_input" class="w-[98%] border-b border-solid border-gray-600 px-2 py-2" placeholder="검색어를 입력하세요"></input>
+            <input type="text" id="searchInput" class="w-[98%] border-b border-solid border-gray-600 px-2 py-2" placeholder="검색어를 입력하세요"></input>
         </div>
-        <div id="todoList" class="lists block h-screen">
+        <div id="todoList" class="lists block h-screen ">
         ${filterTodoData.map((todo) => TodoItem(todo)).join("")}
         </div>
     </div>
