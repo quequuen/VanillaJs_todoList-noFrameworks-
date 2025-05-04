@@ -1,7 +1,7 @@
 import { router } from "./router";
 import Header from "./src/layout/Header";
 import NotFoundPage from "./src/pages/NotFoundPage";
-import { addEvent } from "./src/utils/eventUtil";
+import { addEvent, registerGlobalEvents } from "./src/utils/eventUtil";
 
 addEvent("click", "[data-link]", (e) => {
   e.preventDefault();
@@ -30,6 +30,7 @@ function render() {
   } catch (error) {
     // 에러 내용 뭐가 있을까...?
   }
+  registerGlobalEvents();
 }
 
 export default render;
