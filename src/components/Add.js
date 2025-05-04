@@ -1,14 +1,43 @@
+import { globalStore } from "../stores/globalStore";
+import { addEvent } from "../utils/eventUtil";
+import { getFilterData, todos } from "./List";
+import TodoItem from "./TodoItem";
+
 const Add = () => {
   console.log("ADD");
   let today = new Date().toISOString().split("T")[0];
 
-  //   setTimeout(() => {
-  //     const $add = document.getElementById("todoAdd");
-  //     $add.addEventListener("click", () => {
-  //       let $date = document.getElementById("todoDate");
-  //       console.log($date);
-  //     });
-  //   });
+  addEvent("submit", "#todoForm", (e) => {
+    e.preventDefault();
+    const id = globalStore.getState().posts.length + 1;
+    // console.log(id);
+    const $date = document.getElementById("todoDate");
+    const $content = document.getElementById("todoContent");
+
+    const newTodo = {
+      id: id,
+      creation: new Date().toISOString().split("T")[0],
+      deadLine: $date.value,
+      isDone: "N",
+      content: $content.value,
+    };
+
+    // console.log("📌 새로운 Todo:", newTodo);
+    globalStore.setState({
+      posts: [...todos, newTodo],
+    });
+
+    const newTodos = globalStore.getState().posts;
+    // globalStore의 상태가 변경되어서 다시 newTodos로 추가된 리스트까지 포함된 todos를 가져옴
+
+    const filterTodoData = getFilterData(newTodos, "");
+    // console.log(filterTodoData);
+
+    const $list = document.getElementById("todoList");
+    if ($list) {
+      $list.innerHTML = filterTodoData.map((todo) => TodoItem(todo)).join("");
+    }
+  });
 
   return `
     <div class="add">
@@ -21,24 +50,4 @@ const Add = () => {
     `;
 };
 
-const addBtnClickEvent = () => {
-  const $form = document.getElementById("todoForm");
-
-  $form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const $date = document.getElementById("todoDate");
-    const $content = document.getElementById("todoContent");
-
-    const newTodo = {
-      id: Date.now(), // 또는 UUID 등
-      creation: new Date().toISOString().split("T")[0],
-      deadLine: $date.value,
-      isDone: "N",
-      content: $content.value,
-    };
-
-    console.log("📌 새로운 Todo:", newTodo);
-  });
-};
-export { addBtnClickEvent };
 export default Add;

@@ -9,8 +9,10 @@ export const createStore = (initialStore) => {
   let state = { ...initialStore };
   //초기 상태를 받아서 객체 복사를 통해 초기화(initialStore 참조 보호)
   const setState = (newState) => {
+    // console.log(newState);
     state = { ...state, ...newState };
     // 기존 state유지하고 새로운게 들어오면 새로운것만 바꾸기<-객체 병합
+    console.log(state);
     notify();
   };
   const getState = () => ({ ...state });
