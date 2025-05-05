@@ -4,6 +4,7 @@ import { createRouter } from "./lib/createRouter.js";
 import AllTodosPage from "./pages/AllTodosPage.js";
 import HomePage from "./pages/HomePage.js";
 import TodoDetailPage from "./pages/TodoDetailPage.js";
+import { globalStore } from "./stores/globalStore.js";
 
 router.set(
   createRouter({
@@ -16,6 +17,7 @@ router.set(
 function main() {
   console.log(router.get());
   router.get().subscribe(render);
+  globalStore.subscribe(render);
   render();
 }
 

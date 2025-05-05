@@ -2,28 +2,15 @@ import TodoItem from "./TodoItem";
 import { globalStore } from "../stores/globalStore";
 import { addEvent } from "../utils/eventUtil";
 
-export const todos = globalStore.getState().posts;
-//globalStore에 저장된 더미데이터 불러옴
-// console.log(todos);
-
-export const getFilterData = (todos, search) => {
-  // console.log(todos);
-  // console.log(search);
-  if (search === "") {
-    return todos.filter(
-      (todo) => todo.deadLine === new Date().toISOString().split("T")[0]
-    );
-  }
-  return todos.filter((todo) =>
-    todo.content.toLowerCase().includes(search.toLowerCase())
-  );
-};
-
-const List = () => {
+const TodoList = () => {
   console.log("LIST");
 
   let search = "";
   //검색할 값을 저장하는 변수
+
+  const todos = globalStore.getState().posts;
+  //globalStore에 저장된 더미데이터 불러옴
+  // console.log(todos);
 
   addEvent("keyup", "#searchInput", (e) => {
     // console.log("searchInput 작동");
@@ -41,6 +28,17 @@ const List = () => {
     }
   });
 
+  const getFilterData = () => {
+    if (search === "") {
+      return todos.filter(
+        (todo) => todo.deadLine === new Date().toISOString().split("T")[0]
+      );
+    }
+    return todos.filter((todo) =>
+      todo.content.toLowerCase().includes(search.toLowerCase())
+    );
+  };
+
   const filterTodoData = getFilterData(todos, search);
   // console.log("FILTERED TODOS:", filterTodoData);
   return `
@@ -56,4 +54,4 @@ const List = () => {
     `;
 };
 
-export default List;
+export default TodoList;

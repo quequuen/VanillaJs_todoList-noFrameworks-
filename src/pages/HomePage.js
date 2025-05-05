@@ -1,12 +1,12 @@
-import Add from "../components/Add";
-import List from "../components/List";
+import AddTodoItem from "../components/AddTodoItem";
+import TodoList from "../components/TodoList";
 
 const HomePage = () => {
   console.log("HOME");
 
   return `
-  ${Add()}
-  ${List()}
+  ${AddTodoItem()}
+  ${TodoList()}
   `;
 };
 

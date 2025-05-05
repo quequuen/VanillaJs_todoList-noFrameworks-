@@ -12,7 +12,7 @@ export const createStore = (initialStore) => {
     // console.log(newState);
     state = { ...state, ...newState };
     // 기존 state유지하고 새로운게 들어오면 새로운것만 바꾸기<-객체 병합
-    console.log(state);
+    // console.log(state);
     notify();
   };
   const getState = () => ({ ...state });
