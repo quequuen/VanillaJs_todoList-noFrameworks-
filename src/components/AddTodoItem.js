@@ -5,7 +5,6 @@ import { addEvent } from "../utils/eventUtil";
 const AddTodoItem = () => {
   console.log("ADD");
   let today = new Date().toISOString().split("T")[0];
-  const todos = globalStore.getState().posts;
 
   addEvent("submit", "#todoForm", AddTodoItemEventHandler);
 
