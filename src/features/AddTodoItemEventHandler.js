@@ -1,35 +1,28 @@
-const createNewTodo = () => {
+import { globalStore } from "../stores/globalStore";
+
+const AddTodoItemEventHandler = (e) => {
+  e.preventDefault();
   const todos = globalStore.getState().posts;
-  const id = todos.length + 1;
 
   const $date = document.getElementById("todoDate");
   const $content = document.getElementById("todoContent");
+  const today = new Date().toISOString().split("T")[0];
 
-  return {
-    id: id,
-    creation: new Date().toISOString().split("T")[0],
+  const newTodo = {
+    id: todos.length + 1,
+    creation: today,
     deadLine: $date.value,
     isDone: "N",
     content: $content.value,
   };
-};
-const AddTodoItemEventHandler = () => {
-  e.preventDefault();
-  const $date = document.getElementById("todoDate");
-  const $content = document.getElementById("todoContent");
-  const newTodo = createNewTodo();
 
-  // console.log("📌 새로운 Todo:", newTodo);
   globalStore.setState({
     posts: [...todos, newTodo],
   });
 
-  const newTodos = globalStore.getState().posts;
-  // globalStore의 상태가 변경되어서 다시 newTodos로 추가된 리스트까지 포함된 todos를 가져옴
-
-  // console.log(newTodos);
-
+  // 입력 초기화
   $date.value = today;
   $content.value = "";
 };
+
 export default AddTodoItemEventHandler;
