@@ -1,7 +1,7 @@
 import TodoItem from "../components/TodoItem";
 import { globalStore } from "../stores/globalStore";
 
-const searchEventHandler = (e) => {
+const searchTodoListEventHandler = (e) => {
   // console.log("searchInput 작동");
   const todos = globalStore.getState().posts;
   const search = e.target.value;
@@ -19,4 +19,4 @@ const searchEventHandler = (e) => {
   }
 };
 
-export default searchEventHandler;
+export default searchTodoListEventHandler;

@@ -1,32 +1,24 @@
 import TodoItem from "./TodoItem";
 import { globalStore } from "../stores/globalStore";
 import { addEvent } from "../utils/eventUtil";
-import searchEventHandler from "../features/SearchEventHandler";
+import searchTodoListEventHandler from "../features/searchTodoListEventHandler";
 
 const TodoList = () => {
   console.log("LIST");
-
-  let search = "";
-  //검색할 값을 저장하는 변수
 
   const todos = globalStore.getState().posts;
   //globalStore에 저장된 더미데이터 불러옴
   // console.log(todos);
 
-  addEvent("keyup", "#searchInput", searchEventHandler);
+  addEvent("keyup", "#searchInput", searchTodoListEventHandler);
 
   const getFilterData = () => {
-    if (search === "") {
-      return todos.filter(
-        (todo) => todo.deadLine === new Date().toISOString().split("T")[0]
-      );
-    }
-    return todos.filter((todo) =>
-      todo.content.toLowerCase().includes(search.toLowerCase())
+    return todos.filter(
+      (todo) => todo.deadLine === new Date().toISOString().split("T")[0]
     );
   };
 
-  const filterTodoData = getFilterData(todos, search);
+  const filterTodoData = getFilterData();
   // console.log("FILTERED TODOS:", filterTodoData);
   return `
   <p class="mt-16 flex justify-center italic text-blue-700 text-4xl font-extrabold">TO DO LIST</p>

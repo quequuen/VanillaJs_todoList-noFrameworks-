@@ -1,6 +1,6 @@
 import { globalStore } from "../stores/globalStore";
 
-const AddTodoItemEventHandler = (e) => {
+const addTodoItemEventHandler = (e) => {
   e.preventDefault();
   const todos = globalStore.getState().posts;
 
@@ -25,4 +25,4 @@ const AddTodoItemEventHandler = (e) => {
   $content.value = "";
 };
 
-export default AddTodoItemEventHandler;
+export default addTodoItemEventHandler;
