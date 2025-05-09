@@ -1,9 +1,15 @@
+import changeCheckBoxEventHandler from "../features/changeCheckBoxEventHandler";
+import { addEvent } from "../utils/eventUtil.js";
+
+addEvent("change", "#checkBox", changeCheckBoxEventHandler);
+
 const TodoItem = (todo) => {
   console.log("TODO");
+
   return `
-    <div class="todos ml-[1%] flex gap-6 justify-center items-center border-b border-gray-400 w-[98%] h-[8%]">
+    <div class="todo ml-[1%] flex gap-6 justify-center items-center border-b border-gray-400 w-[98%] h-[8%]">
       <input type="hidden" value="${todo.id}" />
-      <input type="checkbox" class="checkbox" ${
+      <input id="checkBox" type="checkbox" class="checkbox" ${
         todo.isDone === "Y" ? "checked" : ""
       } />
       <div class="content w-[50%] ${

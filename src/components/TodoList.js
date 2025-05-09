@@ -13,9 +13,11 @@ const TodoList = () => {
   addEvent("keyup", "#searchInput", searchTodoListEventHandler);
 
   const getFilterData = () => {
-    return todos.filter(
-      (todo) => todo.deadLine === new Date().toISOString().split("T")[0]
-    );
+    return todos
+      .filter(
+        (todo) => todo.deadLine === new Date().toISOString().split("T")[0]
+      )
+      .sort((a, b) => a.isDone.localeCompare(b.isDone));
   };
 
   const filterTodoData = getFilterData();

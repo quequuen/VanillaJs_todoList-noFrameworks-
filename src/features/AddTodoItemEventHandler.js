@@ -1,4 +1,5 @@
 import { globalStore } from "../stores/globalStore";
+import getDate from "../utils/getDate";
 const setInputValues = () => {
   const $date = document.getElementById("todoDate");
   const $content = document.getElementById("todoContent");
@@ -9,11 +10,10 @@ const setInputValues = () => {
     $content,
   };
 };
-const getDate = () => new Date().toISOString().split("T")[0];
 
 const createTodoItem = (id, deadLine, content) => ({
   id,
-  creation: getDate(),
+  creation: getDate,
   deadLine,
   isDone: "N",
   content,
@@ -25,7 +25,7 @@ const setTodoStore = (newTodo) => {
 };
 
 const resetTodoForm = ($date, $content) => {
-  $date.value = getDate();
+  $date.value = getDate;
   $content.value = "";
 };
 

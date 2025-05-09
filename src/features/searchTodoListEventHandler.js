@@ -1,14 +1,16 @@
 import TodoItem from "../components/TodoItem";
 import { globalStore } from "../stores/globalStore";
-
-const getDate = () => new Date().toISOString().split("T")[0];
+import getDate from "../utils/getDate";
 
 const getFilterTodoDataBySearch = (todos, search) => {
-  return todos.filter(
-    (todo) =>
-      todo.content.toLowerCase().includes(search.toLowerCase()) &&
-      todo.deadLine === getDate()
-  );
+  return todos
+    .filter(
+      (todo) =>
+        todo.content.toLowerCase().includes(search.toLowerCase()) &&
+        todo.deadLine === getDate
+    )
+    .sort((a, b) => a.isDone.localeCompare(b.isDone));
+  //localeCompare로 체크된 애가 밑으로 가게 출력(isDone을 기준으로 사전순 출력 "N"->"Y")
 };
 
 const renderTodoListBySearch = ($list, filterTodoData) => {
