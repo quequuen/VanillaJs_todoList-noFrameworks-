@@ -1,14 +1,13 @@
 import TodoItem from "../components/TodoItem";
 import { globalStore } from "../stores/globalStore";
+import getPath from "../utils/getPath";
+import sortTodosToPath from "../utils/sortTodosToPath";
 
 const getFilterTodoDataBySearchAll = (todos, search) => {
-  return todos
-    .filter((todo) => todo.content.toLowerCase().includes(search.toLowerCase()))
-    .sort(
-      (a, b) =>
-        new Date(a.deadLine) - new Date(b.deadLine) ||
-        a.isDone.localeCompare(b.isDone)
-    );
+  todos = todos.filter((todo) =>
+    todo.content.toLowerCase().includes(search.toLowerCase())
+  );
+  return sortTodosToPath(todos);
 };
 
 const renderTodoListBySearchAll = ($allList, filterTodoData) => {

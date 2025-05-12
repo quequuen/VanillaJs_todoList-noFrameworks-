@@ -1,4 +1,5 @@
 import { globalStore } from "../stores/globalStore";
+import sortTodosToPath from "../utils/sortTodosToPath";
 
 //수정하기 전에 id를 이용해 해당 객체의 isDone 값을 가져오고 그 값이 Y면 N을, N이면 Y을 저장하는 객체 생성
 const getUpdatedTodoForCheckBoxById = (todos, id) => {
@@ -13,11 +14,12 @@ const updateCheckBoxStatus = (todos, updatedTodo) => {
   const updatedTodos = todos.map((todo) =>
     todo.id === updatedTodo.id ? updatedTodo : todo
   );
-  globalStore.setState({ posts: updatedTodos });
+  const sortedTodos = sortTodosToPath(updatedTodos);
+  globalStore.setState({ posts: sortedTodos });
 };
 
 const changeCheckBoxEventHandler = (e) => {
-  console.log("changeCheckBox 동작");
+  // console.log("changeCheckBox 동작");
   const todos = globalStore.getState().posts;
   const id = e.target
     .closest(".todo")
@@ -26,6 +28,5 @@ const changeCheckBoxEventHandler = (e) => {
   const updatedTodo = getUpdatedTodoForCheckBoxById(todos, id);
   // console.log(updatedTodo);
   updateCheckBoxStatus(todos, updatedTodo);
-  console.log(globalStore.getState().posts);
 };
 export default changeCheckBoxEventHandler;

@@ -1,5 +1,8 @@
+import getPath from "../utils/getPath";
+
 const Header = () => {
-  const currentPath = window.location.pathname;
+  console.log("Header");
+  const currentPath = getPath();
   const isHome = currentPath === "/";
   const today = new Date().toLocaleDateString("ko-KR");
 

@@ -1,5 +1,6 @@
 import { globalStore } from "../stores/globalStore";
 import getDate from "../utils/getDate";
+import getPath from "../utils/getPath";
 const setInputValues = () => {
   const $date = document.getElementById("todoDate");
   const $content = document.getElementById("todoContent");
