@@ -2,17 +2,11 @@ import TodoItem from "../components/TodoItem";
 import searchAllTodoListEventHandler from "../features/searchAllTodoListEventHandler";
 import { globalStore } from "../stores/globalStore";
 import { addEvent } from "../utils/eventUtil";
+import sortTodosToPath from "../utils/sortTodosToPath";
 
 const AllTodosPage = () => {
-  console.log("ALL");
-
-  const todos = globalStore
-    .getState()
-    .posts.sort(
-      (a, b) =>
-        new Date(a.deadLine) - new Date(b.deadLine) ||
-        a.isDone.localeCompare(b.isDone)
-    );
+  const todos = globalStore.getState().posts;
+  const sortedTodos = sortTodosToPath(todos);
 
   addEvent("keyup", "#searchInputOfAll", searchAllTodoListEventHandler);
 
@@ -23,7 +17,7 @@ const AllTodosPage = () => {
             <input type="text" id="searchInputOfAll" class="w-[98%] border-b border-solid border-gray-600 px-2 py-2" placeholder="검색어를 입력하세요"></input>
         </div>
         <div id="todoListAll" class="lists block h-screen ">
-         ${todos.map((todo) => TodoItem(todo)).join("")}
+         ${sortedTodos.map((todo) => TodoItem(todo)).join("")}
         </div>
     </div>
   `;

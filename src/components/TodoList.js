@@ -2,21 +2,19 @@ import TodoItem from "./TodoItem";
 import { globalStore } from "../stores/globalStore";
 import { addEvent } from "../utils/eventUtil";
 import searchTodoListEventHandler from "../features/searchTodoListEventHandler";
+import getDate from "../utils/getDate";
 
 const TodoList = () => {
   console.log("LIST");
 
   const todos = globalStore.getState().posts;
   //globalStore에 저장된 더미데이터 불러옴
-  // console.log(todos);
-
+  const today = getDate();
   addEvent("keyup", "#searchInput", searchTodoListEventHandler);
 
   const getFilterData = () => {
     return todos
-      .filter(
-        (todo) => todo.deadLine === new Date().toISOString().split("T")[0]
-      )
+      .filter((todo) => todo.deadLine === today)
       .sort((a, b) => a.isDone.localeCompare(b.isDone));
   };
 

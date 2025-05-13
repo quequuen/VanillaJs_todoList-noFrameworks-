@@ -4,8 +4,6 @@ import { addEvent } from "../utils/eventUtil.js";
 addEvent("change", "#checkBox", changeCheckBoxEventHandler);
 
 const TodoItem = (todo) => {
-  console.log("TODO");
-
   return `
     <div class="todo ml-[1%] flex gap-6 justify-center items-center border-b border-gray-400 w-[98%] h-[8%]">
       <input type="hidden" value="${todo.id}" />
