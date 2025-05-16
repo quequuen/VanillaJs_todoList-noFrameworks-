@@ -19,14 +19,12 @@ const updateCheckBoxStatus = (todos, updatedTodo) => {
 };
 
 const changeCheckBoxEventHandler = (e) => {
-  // console.log("changeCheckBox 동작");
   const todos = globalStore.getState().posts;
   const id = e.target
     .closest(".todo")
     .querySelector('input[type="hidden"]').value;
 
   const updatedTodo = getUpdatedTodoForCheckBoxById(todos, id);
-  // console.log(updatedTodo);
   updateCheckBoxStatus(todos, updatedTodo);
 };
 export default changeCheckBoxEventHandler;

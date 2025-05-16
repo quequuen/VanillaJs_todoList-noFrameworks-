@@ -1,7 +1,6 @@
 import TodoItem from "../components/TodoItem";
 import { globalStore } from "../stores/globalStore";
 import getDate from "../utils/getDate";
-import getPath from "../utils/getPath";
 import sortTodosToPath from "../utils/sortTodosToPath";
 
 const getFilterTodoDataBySearch = (todos, search) => {

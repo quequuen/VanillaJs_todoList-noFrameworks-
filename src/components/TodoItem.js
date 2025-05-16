@@ -1,7 +1,9 @@
 import changeCheckBoxEventHandler from "../features/changeCheckBoxEventHandler";
+import deleteTodoListEventHandler from "../features/deleteTodoListEventHandler.js";
 import { addEvent } from "../utils/eventUtil.js";
 
 addEvent("change", "#checkBox", changeCheckBoxEventHandler);
+addEvent("click", "#deleteTodo", deleteTodoListEventHandler);
 
 const TodoItem = (todo) => {
   return `
@@ -14,8 +16,8 @@ const TodoItem = (todo) => {
         todo.isDone === "Y" ? "line-through" : ""
       }" >${todo.content}</div>
       <div class="date">${todo.deadLine}</div>
-      <button class="update w-10 text-white bg-black rounded hover:bg-gray-400 font-medium text-xs px-2 py-1">수정</button>
-      <button class="delete w-10 text-white bg-black rounded hover:bg-gray-400 font-medium text-xs px-2 py-1">삭제</button>
+      <button id="updateTodo" class="update w-10 text-white bg-black rounded hover:bg-gray-400 font-medium text-xs px-2 py-1">수정</button>
+      <button id="deleteTodo" class="delete w-10 text-white bg-black rounded hover:bg-gray-400 font-medium text-xs px-2 py-1">삭제</button>
     </div>
   `;
 };

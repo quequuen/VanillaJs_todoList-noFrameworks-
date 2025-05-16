@@ -3,9 +3,7 @@ import { addEvent } from "../utils/eventUtil";
 import getDate from "../utils/getDate";
 
 const AddTodoItem = () => {
-  console.log("ADD");
   const today = getDate();
-  console.log(today);
 
   addEvent("submit", "#addTodoForm", addTodoItemEventHandler);
 

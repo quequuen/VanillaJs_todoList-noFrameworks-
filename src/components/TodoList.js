@@ -5,8 +5,6 @@ import searchTodoListEventHandler from "../features/searchTodoListEventHandler";
 import getDate from "../utils/getDate";
 
 const TodoList = () => {
-  console.log("LIST");
-
   const todos = globalStore.getState().posts;
   //globalStore에 저장된 더미데이터 불러옴
   const today = getDate();
