@@ -15,7 +15,7 @@ const TodoItem = (todo) => {
         todo.isDone === "Y" ? "checked" : ""
       } />
       <a id="detailTodoItem" class="content w-[60%] ${
-        todo.isDone === "Y" ? "line-through" : ""
+        todo.isDone === "Y" ? "line-through text-gray-400" : ""
       } hover:underline cursor-pointer" >${todo.content}</a>
       <div class="date">${todo.deadLine}</div>
       <button id="deleteTodo" class="delete w-10 text-white bg-black rounded hover:bg-gray-400 font-medium text-xs px-2 py-1">삭제</button>
