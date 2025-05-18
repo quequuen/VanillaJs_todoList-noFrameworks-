@@ -1,9 +1,11 @@
 import changeCheckBoxEventHandler from "../features/changeCheckBoxEventHandler";
 import deleteTodoListEventHandler from "../features/deleteTodoListEventHandler.js";
+import showDetailTodoItemEventHandler from "../features/showDetailTodoItemEventHandler.js";
 import { addEvent } from "../utils/eventUtil.js";
 
 addEvent("change", "#checkBox", changeCheckBoxEventHandler);
 addEvent("click", "#deleteTodo", deleteTodoListEventHandler);
+addEvent("click", "#detailTodoItem", showDetailTodoItemEventHandler);
 
 const TodoItem = (todo) => {
   return `
@@ -12,11 +14,10 @@ const TodoItem = (todo) => {
       <input id="checkBox" type="checkbox" class="checkbox" ${
         todo.isDone === "Y" ? "checked" : ""
       } />
-      <div class="content w-[50%] ${
+      <a id="detailTodoItem" class="content w-[60%] ${
         todo.isDone === "Y" ? "line-through" : ""
-      }" >${todo.content}</div>
+      } hover:underline cursor-pointer" >${todo.content}</a>
       <div class="date">${todo.deadLine}</div>
-      <button id="updateTodo" class="update w-10 text-white bg-black rounded hover:bg-gray-400 font-medium text-xs px-2 py-1">수정</button>
       <button id="deleteTodo" class="delete w-10 text-white bg-black rounded hover:bg-gray-400 font-medium text-xs px-2 py-1">삭제</button>
     </div>
   `;
