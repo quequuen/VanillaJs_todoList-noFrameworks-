@@ -16,7 +16,7 @@ const setInputValues = () => {
 
 const createTodoItem = (id, deadLine, content) => ({
   id,
-  creation: getDate,
+  creation: getDate(),
   deadLine,
   isDone: "N",
   content,
