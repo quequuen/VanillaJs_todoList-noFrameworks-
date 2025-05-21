@@ -12,7 +12,11 @@ const DetailTodoItem = (todo) => {
         <p class="italic text-blue-700 text-4xl font-extrabold">DETAIL</p>
         </div>
         <div class="mt-8 flex justify-center w-[100%] h-[50%]">
-          <table class="w-[80%]">
+          <table class="w-[80%] table-fixed">
+            <colgroup>
+              <col class="w-[40%]" />
+              <col class="w-[60%]" />
+            </colgroup>
             <tr>
               <td><p class="font-bold">📌 내용</p></td>
               <td>${todo.content}</td>
