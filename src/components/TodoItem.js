@@ -5,7 +5,7 @@ import { addEvent } from "../utils/eventUtil.js";
 
 addEvent("change", "#checkBox", changeCheckBoxEventHandler);
 addEvent("click", "#deleteTodo", deleteTodoListEventHandler);
-addEvent("click", "#detailTodoItem", showDetailTodoItemEventHandler);
+addEvent("click", "#showDetailTodoItem", showDetailTodoItemEventHandler);
 
 const TodoItem = (todo) => {
   return `
@@ -14,7 +14,7 @@ const TodoItem = (todo) => {
       <input id="checkBox" type="checkbox" class="checkbox" ${
         todo.isDone === "Y" ? "checked" : ""
       } />
-      <a id="detailTodoItem" class="content w-[60%] ${
+      <a id="showDetailTodoItem" class="content w-[60%] ${
         todo.isDone === "Y" ? "line-through text-gray-400" : ""
       } hover:underline cursor-pointer" >${todo.content}</a>
       <div class="date">${todo.deadLine}</div>

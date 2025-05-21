@@ -40,9 +40,8 @@ const DetailTodoItem = (todo) => {
           </table>
         </div>
         <div class="mt-10 flex justify-center items-center gap-[20%]">
-          <button id="goEditTodoItem" class="px-3 py-1 bg-black text-white rounded hover:bg-gray-500" data-todo-id="${
-            todo.id
-          }">수정</button>
+          <button id="goEditTodoItem" class="px-3 py-1 bg-black text-white rounded hover:bg-gray-500" 
+          data-todo-id="${todo.id}">수정</button>
           <button id="closeModal" class="px-3 py-1 bg-black text-white rounded hover:bg-gray-500">닫기</button>
         </div>
       </div>
