@@ -1,4 +1,5 @@
 import { router } from "./router";
+import DMinusThree from "./src/components/DMinusThree";
 import Header from "./src/layout/Header";
 import NotFoundPage from "./src/pages/NotFoundPage";
 import { addEvent, registerGlobalEvents } from "./src/utils/eventUtil";
@@ -19,6 +20,7 @@ function render() {
   <div class="max-w-[700px] mx-auto min-h-100 px-4">
     ${Header()}
     ${Page()}
+    ${DMinusThree()}
   </div>
 `;
 

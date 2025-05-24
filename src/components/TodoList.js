@@ -3,20 +3,18 @@ import { globalStore } from "../stores/globalStore";
 import { addEvent } from "../utils/eventUtil";
 import searchTodoListEventHandler from "../features/searchTodoListEventHandler";
 import getDate from "../utils/getDate";
+import sortTodosToPath from "../utils/sortTodosToPath";
 
 const TodoList = () => {
+  addEvent("keyup", "#searchInput", searchTodoListEventHandler);
+
   const todos = globalStore.getState().posts;
   //globalStore에 저장된 더미데이터 불러옴
   const today = getDate();
-  addEvent("keyup", "#searchInput", searchTodoListEventHandler);
-
   const getFilterData = () => {
-    return todos
-      .filter((todo) => todo.deadLine === today)
-      .sort((a, b) => a.isDone.localeCompare(b.isDone));
+    return todos.filter((todo) => todo.deadLine === today);
   };
-
-  const filterTodoData = getFilterData();
+  const filterTodoData = sortTodosToPath(getFilterData());
   // console.log("FILTERED TODOS:", filterTodoData);
   return `
   <p class="mt-16 flex justify-center italic text-blue-700 text-4xl font-extrabold">TO DO LIST</p>

@@ -5,21 +5,21 @@ export const globalStore = createStore({
     {
       id: 1,
       creation: "2025-05-01",
-      deadLine: "2025-05-22",
+      deadLine: "2025-05-24",
       isDone: "Y",
       content: "javaScript 공부하기",
     },
     {
       id: 2,
       creation: "2025-05-01",
-      deadLine: "2025-05-22",
+      deadLine: "2025-05-24",
       isDone: "N",
       content: "java 공부하기",
     },
     {
       id: 3,
       creation: "2025-05-01",
-      deadLine: "2025-05-22",
+      deadLine: "2025-05-24",
       isDone: "N",
       content: "c 공부하기",
     },
@@ -36,6 +36,13 @@ export const globalStore = createStore({
       deadLine: "2025-11-29",
       isDone: "N",
       content: "typeScript 공부하기",
+    },
+    {
+      id: 6,
+      creation: "2025-05-01",
+      deadLine: "2025-05-25",
+      isDone: "N",
+      content: "기말 공부하기",
     },
   ],
 });
