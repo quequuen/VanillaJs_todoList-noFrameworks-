@@ -36,6 +36,18 @@ const setTodoStoreByUpdatedTodoItem = (updatedTodos) => {
   globalStore.setState({ posts: updatedTodos });
 };
 
+//유효성 검사
+const isValidFormForUpdate = (deadLine, content) => {
+  if (!deadLine) {
+    alert("⚠️날짜를 선택하세요.");
+    return false;
+  } else if (!content) {
+    alert("⚠️Todo를 작성하세요.");
+    return false;
+  }
+  return true;
+};
+
 const updateTodoItemEventHandler = (e) => {
   const updateCheck = confirm("수정하시겠습니까?");
   const id = Number(e.target.dataset.todoId);
@@ -50,6 +62,8 @@ const updateTodoItemEventHandler = (e) => {
     isDone,
     content,
   });
+
+  if (!isValidFormForUpdate(deadLine, content)) return;
 
   if (updateCheck) {
     //업데이트된 todos로 globalStore를 수정

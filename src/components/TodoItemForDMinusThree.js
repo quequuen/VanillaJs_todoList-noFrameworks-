@@ -5,9 +5,9 @@ const TodoItemForDMinusThree = (todo) => {
         <input id="checkBox" type="checkbox" class="checkbox" ${
           todo.isDone === "Y" ? "checked" : ""
         } />
-        <a id="showDetailTodoItem" class="content w-[50%] ${
+        <div class="w-[50%] ${
           todo.isDone === "Y" ? "line-through text-gray-400" : ""
-        } hover:underline cursor-pointer" >${todo.content}</a>
+        }" >${todo.content}</div>
         <div class="date">${todo.deadLine}</div>
       </div>
     `;
