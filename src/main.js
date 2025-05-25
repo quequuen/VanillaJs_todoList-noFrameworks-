@@ -9,7 +9,6 @@ router.set(
   createRouter({
     "/": HomePage,
     "/all": AllTodosPage,
-    // "/update": UpdateDetailPage,
   })
 );
 function main() {
