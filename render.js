@@ -17,7 +17,7 @@ function render() {
     // 일치하는 컴포넌트가 없을 시 NotFoundPage 를 Page에 저장
     // ??->Null, None일 때 false
     $root.innerHTML = `
-  <div class="max-w-[700px] mx-auto min-h-100 px-4">
+  <div class="max-w-[700px] mx-auto h-[100%] px-4">
     ${Header()}
     ${Page()}
     ${DMinusThree()}
