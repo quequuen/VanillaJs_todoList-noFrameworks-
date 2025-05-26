@@ -27,7 +27,7 @@ const TodoList = () => {
             ${paginatedTodos.map((todo) => TodoItem(todo)).join("")}
           </div>
           <div id="paging" class="flex justify-center">
-             ${pagingButtons(itemsPerPage, currentPage)}
+             ${pagingButtons(getTodayTodoList(), itemsPerPage, currentPage)}
         </div>
     </div>
     `;

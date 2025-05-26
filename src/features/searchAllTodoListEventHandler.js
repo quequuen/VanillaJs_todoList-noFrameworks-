@@ -12,11 +12,11 @@ const getFilterTodoDataBySearchAll = (search) => {
 
 const renderPageNumberBySearchAll = (
   $paging,
-  paginatedTodos,
+  filterTodoData,
   itemsPerPage,
   currentPage
 ) => {
-  $paging.innerHTML = pagingButtons(paginatedTodos, itemsPerPage, currentPage);
+  $paging.innerHTML = pagingButtons(filterTodoData, itemsPerPage, currentPage);
 };
 
 const renderTodoListBySearchAll = ($allList, paginatedTodos) => {
@@ -36,13 +36,10 @@ const searchAllTodoListEventHandler = (e) => {
 
   if ($allList && $paging) {
     const filterTodoData = getFilterTodoDataBySearchAll(search);
-    console.log($paging);
-    console.log(filterTodoData);
     const paginatedTodos = filterTodoData.slice(startIdx, endIdx);
-    consol.log(paginatedTodos);
     renderPageNumberBySearchAll(
       $paging,
-      paginatedTodos,
+      filterTodoData,
       itemsPerPage,
       currentPage
     );
