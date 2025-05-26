@@ -1,26 +1,52 @@
+import pagingButtons from "../components/pagingButtons";
 import TodoItem from "../components/TodoItem";
-import { globalStore } from "../stores/globalStore";
+import getAllTodoList from "../utils/getAllTodoList";
 import sortTodosToPath from "../utils/sortTodosToPath";
 
-const getFilterTodoDataBySearchAll = (todos, search) => {
-  todos = todos.filter((todo) =>
+const getFilterTodoDataBySearchAll = (search) => {
+  let todos = getAllTodoList().filter((todo) =>
     todo.content.toLowerCase().includes(search.toLowerCase())
   );
   return sortTodosToPath(todos);
 };
 
-const renderTodoListBySearchAll = ($allList, filterTodoData) => {
-  $allList.innerHTML = filterTodoData.map((todo) => TodoItem(todo)).join("");
+const renderPageNumberBySearchAll = (
+  $paging,
+  paginatedTodos,
+  itemsPerPage,
+  currentPage
+) => {
+  $paging.innerHTML = pagingButtons(paginatedTodos, itemsPerPage, currentPage);
+};
+
+const renderTodoListBySearchAll = ($allList, paginatedTodos) => {
+  $allList.innerHTML = paginatedTodos.map((todo) => TodoItem(todo)).join("");
 };
 
 const searchAllTodoListEventHandler = (e) => {
-  const todos = globalStore.getState().posts;
-  const search = e.target.value;
-  const $allList = document.getElementById("todoListAll");
+  const itemsPerPage = 6;
+  const selectedBtn = document.querySelector(".page_btn.font-semibold");
+  const currentPage = selectedBtn ? Number(selectedBtn.dataset.page) : 1;
+  const startIdx = (currentPage - 1) * itemsPerPage;
+  const endIdx = startIdx + itemsPerPage;
 
-  if ($allList) {
-    const filterTodoData = getFilterTodoDataBySearchAll(todos, search);
-    renderTodoListBySearchAll($allList, filterTodoData);
+  const search = e.target.value;
+  const $allList = document.getElementById("todoList");
+  const $paging = document.getElementById("paging");
+
+  if ($allList && $paging) {
+    const filterTodoData = getFilterTodoDataBySearchAll(search);
+    console.log($paging);
+    console.log(filterTodoData);
+    const paginatedTodos = filterTodoData.slice(startIdx, endIdx);
+    consol.log(paginatedTodos);
+    renderPageNumberBySearchAll(
+      $paging,
+      paginatedTodos,
+      itemsPerPage,
+      currentPage
+    );
+    renderTodoListBySearchAll($allList, paginatedTodos);
   }
 };
 export default searchAllTodoListEventHandler;

@@ -4,7 +4,7 @@ import getAllTodoList from "../utils/getAllTodoList";
 import getPath from "../utils/getPath";
 import getTodayTodoList from "../utils/getTodayTodoList";
 
-const pagingButtons = (itemsPerPage, currentPage) => {
+const pagingButtons = (paginatedTodos, itemsPerPage, currentPage) => {
   addEvent("click", ".page_btn", clickPagingButtonsEventHandler);
 
   const path = getPath();

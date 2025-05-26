@@ -9,7 +9,8 @@ const TodoList = () => {
 
   //페이징 처리를 하기 위한 변수들
   const itemsPerPage = 5;
-  let currentPage = 1;
+  const selectedBtn = document.querySelector(".page_btn.font-semibold");
+  const currentPage = selectedBtn ? Number(selectedBtn.dataset.page) : 1;
   const startIdx = (currentPage - 1) * itemsPerPage;
   const endIdx = startIdx + itemsPerPage;
 

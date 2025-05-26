@@ -8,7 +8,8 @@ const AllTodoList = () => {
   addEvent("keyup", "#searchInputOfAll", searchAllTodoListEventHandler);
 
   const itemsPerPage = 6;
-  let currentPage = 1;
+  const selectedBtn = document.querySelector(".page_btn.font-semibold");
+  const currentPage = selectedBtn ? Number(selectedBtn.dataset.page) : 1;
   const startIdx = (currentPage - 1) * itemsPerPage;
   const endIdx = startIdx + itemsPerPage;
 
@@ -25,7 +26,7 @@ const AllTodoList = () => {
               ${paginatedTodos.map((todo) => TodoItem(todo)).join("")}
             </div>
             <div id="paging" class="flex justify-center">
-                ${pagingButtons(itemsPerPage, currentPage)}
+                ${pagingButtons(getAllTodoList(), itemsPerPage, currentPage)}
             </div>
       </div>
     `;
