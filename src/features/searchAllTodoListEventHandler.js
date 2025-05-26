@@ -16,6 +16,7 @@ const renderPageNumberBySearchAll = (
   itemsPerPage,
   currentPage
 ) => {
+  $paging.dataset.todos = JSON.stringify(filterTodoData);
   $paging.innerHTML = pagingButtons(filterTodoData, itemsPerPage, currentPage);
 };
 

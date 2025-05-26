@@ -19,15 +19,20 @@ const clickPagingButtonsEventHandler = (e) => {
   //main과 all 일 때 itemsPerPage가 다름
 
   const $list = document.getElementById("todoList");
+  const $paging = document.getElementById("paging");
   const path = getPath();
 
   const currentPage = Number(e.target.dataset.page);
   const itemsPerPage = Number(e.target.dataset.itemsPerPage);
   const startIdx = (currentPage - 1) * itemsPerPage;
   const endIdx = startIdx + itemsPerPage;
-  const paginatedTodos = (
-    path === "/" ? getTodayTodoList() : getAllTodoList()
-  ).slice(startIdx, endIdx);
+  const json = $paging?.dataset?.todos;
+  const todos = json
+    ? JSON.parse(json)
+    : path === "/"
+    ? getTodayTodoList()
+    : getAllTodoList();
+  const paginatedTodos = todos.slice(startIdx, endIdx);
   if ($list) {
     renderTodoListByPaging($list, paginatedTodos);
     activePagingButton(e.target);
