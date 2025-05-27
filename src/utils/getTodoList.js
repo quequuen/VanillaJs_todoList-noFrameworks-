@@ -1,14 +1,16 @@
 import { globalStore } from "../stores/globalStore";
 import getDate from "../utils/getDate";
 import sortTodosToPath from "../utils/sortTodosToPath";
+import getPath from "./getPath";
 
 const getFilterData = () => {
+  const path = getPath();
   const todos = globalStore.getState().posts;
   const today = getDate();
-  return todos.filter((todo) => todo.deadLine === today);
+  return path === "/" ? todos.filter((todo) => todo.deadLine === today) : todos;
 };
 
-const getTodayTodoList = () => {
+const getTodoList = () => {
   return sortTodosToPath(getFilterData());
 };
-export default getTodayTodoList;
+export default getTodoList;

@@ -1,19 +1,24 @@
 import TodoItem from "../components/TodoItem";
-import searchAllTodoListEventHandler from "../features/searchAllTodoListEventHandler";
+import searchTodoListEventHandler from "../features/searchTodoListEventHandler";
 import { addEvent } from "../utils/eventUtil";
-import getAllTodoList from "../utils/getAllTodoList";
+import getCurrentPageInfo from "../utils/getCurrentPageInfo";
+import getPath from "../utils/getPath";
+import getTodoList from "../utils/getTodoList";
+import paginate from "../utils/paginate";
 import pagingButtons from "./pagingButtons";
 
 const AllTodoList = () => {
-  addEvent("keyup", "#searchInputOfAll", searchAllTodoListEventHandler);
+  addEvent("keyup", "#searchInputOfAll", searchTodoListEventHandler);
 
-  const itemsPerPage = 6;
+  const path = getPath();
   const selectedBtn = document.querySelector(".page_btn.font-semibold");
   const currentPage = selectedBtn ? Number(selectedBtn.dataset.page) : 1;
-  const startIdx = (currentPage - 1) * itemsPerPage;
-  const endIdx = startIdx + itemsPerPage;
+  const { itemsPerPage, startIdx, endIdx } = getCurrentPageInfo(
+    path,
+    currentPage
+  );
 
-  const paginatedTodos = getAllTodoList().slice(startIdx, endIdx);
+  const paginatedTodos = paginate(getTodoList(), startIdx, endIdx);
 
   return `
       <p class="mt-10 flex justify-center italic text-blue-700 text-4xl font-extrabold">ALL TO DO LIST</p>
@@ -26,7 +31,7 @@ const AllTodoList = () => {
               ${paginatedTodos.map((todo) => TodoItem(todo)).join("")}
             </div>
             <div id="paging" class="flex justify-center">
-                ${pagingButtons(getAllTodoList(), itemsPerPage, currentPage)}
+                ${pagingButtons(getTodoList(), itemsPerPage, currentPage)}
             </div>
       </div>
     `;

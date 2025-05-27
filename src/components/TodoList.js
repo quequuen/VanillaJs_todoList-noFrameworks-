@@ -1,20 +1,25 @@
 import TodoItem from "./TodoItem";
 import { addEvent } from "../utils/eventUtil";
 import searchTodoListEventHandler from "../features/searchTodoListEventHandler";
+import getTodoList from "../utils/getTodoList";
 import pagingButtons from "./pagingButtons";
-import getTodayTodoList from "../utils/getTodayTodoList";
+import paginate from "../utils/paginate";
+import getCurrentPageInfo from "../utils/getCurrentPageInfo";
+import getPath from "../utils/getPath";
 
 const TodoList = () => {
   addEvent("keyup", "#searchInput", searchTodoListEventHandler);
 
   //페이징 처리를 하기 위한 변수들
-  const itemsPerPage = 5;
+  const path = getPath();
   const selectedBtn = document.querySelector(".page_btn.font-semibold");
   const currentPage = selectedBtn ? Number(selectedBtn.dataset.page) : 1;
-  const startIdx = (currentPage - 1) * itemsPerPage;
-  const endIdx = startIdx + itemsPerPage;
+  const { itemsPerPage, startIdx, endIdx } = getCurrentPageInfo(
+    path,
+    currentPage
+  );
 
-  const paginatedTodos = getTodayTodoList().slice(startIdx, endIdx);
+  const paginatedTodos = paginate(getTodoList(), startIdx, endIdx);
 
   return `
   <p class="mt-16 flex justify-center italic text-blue-700 text-4xl font-extrabold">TO DO LIST</p>
@@ -27,7 +32,7 @@ const TodoList = () => {
             ${paginatedTodos.map((todo) => TodoItem(todo)).join("")}
           </div>
           <div id="paging" class="flex justify-center">
-             ${pagingButtons(getTodayTodoList(), itemsPerPage, currentPage)}
+             ${pagingButtons(getTodoList(), itemsPerPage, currentPage)}
         </div>
     </div>
     `;

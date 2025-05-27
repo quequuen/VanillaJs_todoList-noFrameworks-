@@ -1,11 +1,8 @@
-import TodoItem from "../components/TodoItem";
-import getAllTodoList from "../utils/getAllTodoList";
+import getTodoList from "../utils/getTodoList";
+import renderTodoList from "../utils/renderTodoList";
+import getCurrentPageInfo from "../utils/getCurrentPageInfo";
 import getPath from "../utils/getPath";
-import getTodayTodoList from "../utils/getTodayTodoList";
-
-const renderTodoListByPaging = ($list, paginatedTodos) => {
-  $list.innerHTML = paginatedTodos.map((todo) => TodoItem(todo)).join("");
-};
+import paginate from "../utils/paginate";
 
 const activePagingButton = (target) => {
   let $pagingButtons = document.querySelectorAll(".page_btn");
@@ -16,25 +13,17 @@ const activePagingButton = (target) => {
 };
 
 const clickPagingButtonsEventHandler = (e) => {
-  //main과 all 일 때 itemsPerPage가 다름
-
-  const $list = document.getElementById("todoList");
-  const $paging = document.getElementById("paging");
   const path = getPath();
-
   const currentPage = Number(e.target.dataset.page);
-  const itemsPerPage = Number(e.target.dataset.itemsPerPage);
-  const startIdx = (currentPage - 1) * itemsPerPage;
-  const endIdx = startIdx + itemsPerPage;
+  const { startIdx, endIdx, $list, $paging } = getCurrentPageInfo(
+    path,
+    currentPage
+  );
   const json = $paging?.dataset?.todos;
-  const todos = json
-    ? JSON.parse(json)
-    : path === "/"
-    ? getTodayTodoList()
-    : getAllTodoList();
-  const paginatedTodos = todos.slice(startIdx, endIdx);
+  const todos = json ? JSON.parse(json) : getTodoList();
+  const paginatedTodos = paginate(todos, startIdx, endIdx);
   if ($list) {
-    renderTodoListByPaging($list, paginatedTodos);
+    renderTodoList($list, paginatedTodos);
     activePagingButton(e.target);
   }
 };
